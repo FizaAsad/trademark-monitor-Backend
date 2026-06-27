@@ -22,6 +22,12 @@ app.use('/api/keywords', require('./routes/keywords'));
 // app.use('/api/reports', require('./routes/reports'));
 // app.use('/api/settings', require('./routes/settings'));
 
+const { runEUIPOScraper } = require("./scrapers/euipoScraper");
+app.get("/api/test-euipo", async (req, res) => {
+  await runEUIPOScraper();
+  res.json({ message: "EUIPO scan complete. Check trademark_matches in Supabase." });
+});
+
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
