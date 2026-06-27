@@ -28,6 +28,12 @@ app.get("/api/test-euipo", async (req, res) => {
   res.json({ message: "EUIPO scan complete. Check trademark_matches in Supabase." });
 });
 
+const { runUSPTOScraper } = require("./scrapers/usptoScraper");
+app.get("/api/test-uspto", async (req, res) => {
+  const total = await runUSPTOScraper();
+  res.json({ message: `USPTO scan complete. ${total} new match(es) found.` });
+});
+
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
