@@ -25,3 +25,10 @@ app.get('/health', (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
+
+const { runEUIPOScraper } = require("./scrapers/euipoScraper");
+
+app.get("/api/test-euipo", async (req, res) => {
+  await runEUIPOScraper();
+  res.json({ message: "EUIPO scan complete. Check trademark_matches in Supabase." });
+});
