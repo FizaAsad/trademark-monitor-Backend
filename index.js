@@ -15,8 +15,8 @@ app.get('/health', (req, res) => {
   res.status(200).json({ status: 'ok', timestamp: new Date().toISOString() });
 });
 
-// Routes (will be added as we build each module)
-// app.use('/api/keywords', require('./routes/keywords'));
+// Routes
+app.use('/api/keywords', require('./routes/keywords'));
 // app.use('/api/matches', require('./routes/matches'));
 // app.use('/api/scan', require('./routes/scan'));
 // app.use('/api/reports', require('./routes/reports'));
