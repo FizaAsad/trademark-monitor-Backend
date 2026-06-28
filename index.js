@@ -57,6 +57,12 @@ app.get("/api/test-cipo", async (req, res) => {
   res.json({ message: `CIPO scan complete. ${total} new match(es) found.` });
 });
 
+const { runUSStatesScraper } = require("./scrapers/usStatesScraper");
+app.get("/api/test-us-states", async (req, res) => {
+  const total = await runUSStatesScraper();
+  res.json({ message: `US States scan complete. ${total} new match(es) found.` });
+});
+
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
