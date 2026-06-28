@@ -57,10 +57,16 @@ app.get("/api/test-cipo", async (req, res) => {
   res.json({ message: `CIPO scan complete. ${total} new match(es) found.` });
 });
 
-const { runUSStatesScraper } = require("./scrapers/usStatesScraper");
+const { runUSStateScraper } = require("./scrapers/usStateScraper");
 app.get("/api/test-us-states", async (req, res) => {
-  const total = await runUSStatesScraper();
+  const total = await runUSStateScraper();
   res.json({ message: `US States scan complete. ${total} new match(es) found.` });
+});
+
+const { runUSStatesScraper } = require("./scrapers/usStatesScraper");
+app.get("/api/test-us-states-v1", async (req, res) => {
+  const total = await runUSStatesScraper();
+  res.json({ message: `US States (v1) scan complete. ${total} new match(es) found.` });
 });
 
 app.listen(PORT, () => {

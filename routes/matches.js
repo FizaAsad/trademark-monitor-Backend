@@ -28,11 +28,8 @@ router.get("/", async (req, res) => {
     .order("created_at", { ascending: false }),
 ]);
 
-    // Check for errors on any table
+    // Only hard-fail on trademark_matches; others may not exist yet
     if (trademark.error) throw new Error("trademark_matches: " + trademark.error.message);
-    if (domain.error)    throw new Error("domain_matches: "    + domain.error.message);
-    if (marketplace.error) throw new Error("marketplace_matches: " + marketplace.error.message);
-    if (social.error)    throw new Error("social_matches: "    + social.error.message);
 
     // Normalize each result into a common shape
         const trademarkRows = (trademark.data || []).map((r) => ({
@@ -45,7 +42,7 @@ router.get("/", async (req, res) => {
       status:     r.status || "new",
     }));
 
-        const domainRows = (domain.data || []).map((r) => ({
+        const domainRows = (domain.error ? [] : domain.data || []).map((r) => ({
       id:         r.id,
       source:     "Domain",
       category:   "domain",
@@ -55,7 +52,7 @@ router.get("/", async (req, res) => {
       status:     r.status || "new",
     }));
 
-    const marketplaceRows = (marketplace.data || []).map((r) => ({
+    const marketplaceRows = (marketplace.error ? [] : marketplace.data || []).map((r) => ({
       id:         r.id,
       source:     r.platform || "Marketplace",
       category:   "marketplace",
@@ -65,7 +62,7 @@ router.get("/", async (req, res) => {
       status:     r.status || "new",
     }));
 
-    const socialRows = (social.data || []).map((r) => ({
+    const socialRows = (social.error ? [] : social.data || []).map((r) => ({
       id:         r.id,
       source:     r.platform || "Social",
       category:   "social",

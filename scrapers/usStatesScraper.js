@@ -23,12 +23,7 @@ function getSimilarity(a, b) {
 
 const STATES = [
   // ── JSON / REST API states ────────────────────────────────────────────────
-  {
-    code: 'WA', name: 'Washington', type: 'api',
-    url: 'https://esos.wa.gov/api/BusinessSearch/SearchByName',
-    params: (kw) => ({ name: kw, pageNumber: 1, pageSize: 20 }),
-    extract: (json) => (json.businessEntities || []).map(e => ({ name: e.businessName || '', status: e.businessStatusDescription || '' }))
-  },
+  { code: 'WA', name: 'Washington', type: 'skip', reason: 'esos.wa.gov API is DNS-dead; ccfs.sos.wa.gov is SPA — deferred' },
   {
     code: 'CO', name: 'Colorado', type: 'api',
     url: 'https://data.colorado.gov/resource/4ykn-tg5h.json',
@@ -407,8 +402,15 @@ async function runUSStatesScraper() {
         for (const hit of hits) {
           const name = hit.name || '';
           if (!name || name.length > 200) continue;
+
           const score = getSimilarity(kw.term, name);
-          if (score < 0.8) continue;
+          const kwEsc = kw.term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+          const wordHit = new RegExp(`\\b${kwEsc}`, 'i').test(name);
+
+          // Match if near-exact OR keyword appears as a word/prefix in the name
+          if (score < 0.8 && !wordHit) continue;
+          const finalScore = score >= 0.8 ? score : 0.75;
+
           const dup = await isDuplicate(name, kw.term, `US-${state.code}`);
           if (dup) continue;
 
@@ -417,13 +419,13 @@ async function runUSStatesScraper() {
             filing_name: name,
             filing_date: hit.filingDate || null,
             matched_keyword: kw.term,
-            similarity_score: score,
+            similarity_score: finalScore,
             raw_data: hit,
             status: 'new'
           }]);
           totalFound++;
           stateMatches++;
-          console.log(`[US-STATES] [${state.code}] Match: "${name}" (${score.toFixed(2)})`);
+          console.log(`[US-STATES] [${state.code}] Match: "${name}" (${finalScore.toFixed(2)})`);
         }
 
         stateReport.push({ state: state.code, keyword: kw.term, results: hits.length, matches: stateMatches, status: 'ok' });

@@ -1,0 +1,350 @@
+[
+  {
+    "state": "Alabama", "code": "AL",
+    "url": "https://arc-sos.state.al.us/cgi/corpname.mbr/output",
+    "method": "axios", "searchParam": "name",
+    "extraParams": { "search_type": "bn" },
+    "accessible": true, "notes": "CGI GET — returns HTML table of matches"
+  },
+  {
+    "state": "Alaska", "code": "AK",
+    "url": "https://www.commerce.alaska.gov/cbp/main/search/entities",
+    "method": "browser", "searchParam": "EntityName",
+    "searchInput": "input[name='EntityName'], input[placeholder*='name' i], input[type='text']",
+    "accessible": true, "notes": "Browser — 403 on plain axios; Puppeteer bypasses"
+  },
+  {
+    "state": "Arizona", "code": "AZ",
+    "url": "https://ecorp.azcc.gov/BusinessSearch/Business",
+    "method": "browser", "searchParam": "searchkeyword",
+    "searchInput": "input[name='searchkeyword'], input[placeholder*='name' i], input[type='search'], input[type='text']",
+    "accessible": true, "notes": "Angular SPA — Puppeteer required"
+  },
+  {
+    "state": "Arkansas", "code": "AR",
+    "url": "https://www.ark.org/corp-search/index.php",
+    "method": "axios", "searchParam": "corp_name",
+    "extraParams": { "search_type": "begins" },
+    "accessible": true, "notes": "Simple PHP GET"
+  },
+  {
+    "state": "California", "code": "CA",
+    "url": "https://businesssearch.sos.ca.gov/",
+    "method": "browser", "searchParam": "businessName",
+    "searchInput": "input[placeholder*='name' i], input[type='search'], input[type='text']",
+    "accessible": true, "notes": "React SPA — Puppeteer required"
+  },
+  {
+    "state": "Colorado", "code": "CO",
+    "url": "https://data.colorado.gov/resource/4ykn-tg5h.json",
+    "method": "api", "nameField": "entityname",
+    "accessible": true, "notes": "Socrata open data API — name-specific $where search"
+  },
+  {
+    "state": "Connecticut", "code": "CT",
+    "url": "https://service.ct.gov/business/s/onlinebusinesssearch",
+    "method": "browser", "searchParam": "businessName",
+    "searchInput": "input[placeholder*='name' i], input[type='search'], input[type='text']",
+    "accessible": true, "notes": "Salesforce SPA — Puppeteer required"
+  },
+  {
+    "state": "Delaware", "code": "DE",
+    "url": "", "method": "none", "searchParam": null,
+    "accessible": false, "notes": "CAPTCHA on all automated queries — permanently blocked"
+  },
+  {
+    "state": "District of Columbia", "code": "DC",
+    "url": "https://corponline.dcra.dc.gov/Home.aspx",
+    "method": "browser", "searchParam": "entityName",
+    "searchInput": "input[placeholder*='name' i], input[type='search'], input[type='text']",
+    "accessible": true, "notes": "DCRA portal — Puppeteer required"
+  },
+  {
+    "state": "Florida", "code": "FL",
+    "url": "https://search.sunbiz.org/Inquiry/CorporationSearch/ByName",
+    "method": "browser", "searchParam": "SearchTerm",
+    "searchInput": "input#SearchTerm, input[name='SearchTerm'], input[type='text']",
+    "searchSubmit": "input[type='submit'], button[type='submit']",
+    "resultsSelector": "table.resultTable tbody tr td:nth-child(2)",
+    "accessible": true, "notes": "Sunbiz — 403 on axios; Puppeteer bypasses bot detection"
+  },
+  {
+    "state": "Georgia", "code": "GA",
+    "url": "https://ecorp.sos.ga.gov/BusinessSearch",
+    "method": "browser", "searchParam": "businessName",
+    "searchInput": "input[placeholder*='name' i], input[type='search'], input[type='text']",
+    "accessible": true, "notes": "Angular SPA — Puppeteer required"
+  },
+  {
+    "state": "Hawaii", "code": "HI",
+    "url": "https://hbe.ehawaii.gov/documents/search.html",
+    "method": "axios", "searchParam": "search",
+    "accessible": true, "notes": "Standard HTML GET form"
+  },
+  {
+    "state": "Idaho", "code": "ID",
+    "url": "https://sosbiz.idaho.gov/search/business",
+    "method": "browser", "searchParam": "name",
+    "searchInput": "input[placeholder*='name' i], input[type='search'], input[type='text']",
+    "accessible": true, "notes": "React SPA — Puppeteer required"
+  },
+  {
+    "state": "Illinois", "code": "IL",
+    "url": "https://apps.ilsos.gov/businessentitysearch/",
+    "method": "browser", "searchParam": "search",
+    "searchInput": "input[name='TextField'], input[placeholder*='name' i], input[type='text']",
+    "searchSubmit": "input[type='submit'], input[value*='Search' i], button[type='submit']",
+    "accessible": true, "notes": "JSP — 403 on plain GET; Puppeteer bypasses"
+  },
+  {
+    "state": "Indiana", "code": "IN",
+    "url": "https://bsd.sos.in.gov/publicbusinesssearch",
+    "method": "browser", "searchParam": "SearchKeyword",
+    "searchInput": "input[name='SearchKeyword'], input[placeholder*='keyword' i], input[type='text']",
+    "accessible": true, "notes": "Server-rendered — 403 on axios; Puppeteer bypasses"
+  },
+  {
+    "state": "Iowa", "code": "IA",
+    "url": "", "method": "none", "searchParam": null,
+    "accessible": false, "notes": "Public API costs $2,400/yr; HTML portal requires session tokens — permanently blocked"
+  },
+  {
+    "state": "Kansas", "code": "KS",
+    "url": "https://www.sos.ks.gov/eforms/BusinessEntity/Search.aspx",
+    "method": "browser", "searchParam": "txtEntityName",
+    "searchInput": "input[name='txtEntityName'], input[id*='txtEntity' i], input[type='text']",
+    "searchSubmit": "input[name='btnSearch'], input[value='Search'], button[type='submit']",
+    "accessible": true, "notes": "ASP.NET — 405 on axios POST; Puppeteer fills and submits form"
+  },
+  {
+    "state": "Kentucky", "code": "KY",
+    "url": "https://sosbes.sos.ky.gov/BusSearchNProfile/search.aspx",
+    "method": "aspnet", "searchParam": "txtEntityName", "postButton": "btnSearch",
+    "accessible": true, "notes": "ASP.NET WebForms — GET→POST with ViewState"
+  },
+  {
+    "state": "Louisiana", "code": "LA",
+    "url": "", "method": "none", "searchParam": null,
+    "accessible": false, "notes": "CAPTCHA required on all search requests — permanently blocked"
+  },
+  {
+    "state": "Maine", "code": "ME",
+    "url": "https://apps3.web.maine.gov/nei-sos-icrs/ICRS",
+    "method": "browser", "searchParam": "SearchInput",
+    "searchInput": "input[name='SearchInput'], input[placeholder*='name' i], input[type='text']",
+    "accessible": true, "notes": "Legacy portal — axios times out; Puppeteer allows longer wait"
+  },
+  {
+    "state": "Maryland", "code": "MD",
+    "url": "https://egov.maryland.gov/BusinessExpress/EntitySearch",
+    "method": "browser", "searchParam": "businessName",
+    "searchInput": "input[placeholder*='name' i], input[type='search'], input[type='text']",
+    "accessible": true, "notes": "React SPA — Puppeteer required"
+  },
+  {
+    "state": "Massachusetts", "code": "MA",
+    "url": "https://corp.sec.state.ma.us/corpweb/CorpSearch/CorpSearch.aspx",
+    "method": "browser",
+    "searchInput": "input[name='SearchFld'], input[placeholder*='name' i], input[type='text']",
+    "searchSubmit": "input[name='SearchButton'], input[value*='Search' i], button[type='submit']",
+    "accessible": true, "notes": "Incapsula WAF blocks all axios (200 OK bot-detection page); Puppeteer stealth bypasses"
+  },
+  {
+    "state": "Michigan", "code": "MI",
+    "url": "https://mibusinessregistry.lara.state.mi.us/search/business",
+    "method": "browser", "searchParam": "entityName",
+    "searchInput": "input[placeholder*='name' i], input[type='search'], input[type='text']",
+    "accessible": true, "notes": "Angular SPA — Puppeteer required"
+  },
+  {
+    "state": "Minnesota", "code": "MN",
+    "url": "https://mblsportal.sos.state.mn.us/Business/Search",
+    "method": "browser", "searchParam": "SearchValue",
+    "searchInput": "input[name='SearchValue'], input[placeholder*='name' i], input[type='text']",
+    "accessible": true, "notes": "GET returns same 35 results regardless of term — use browser to properly submit form"
+  },
+  {
+    "state": "Mississippi", "code": "MS",
+    "url": "https://corp.sos.ms.gov/corp/portal/c/page/corpBusinessIdSearch/portal.aspx",
+    "method": "browser", "searchParam": "SearchKeyword",
+    "searchInput": "input[name='SearchKeyword'], input[placeholder*='name' i], input[type='text']",
+    "accessible": true, "notes": "ASP.NET portal — 403 on axios; Puppeteer bypasses"
+  },
+  {
+    "state": "Missouri", "code": "MO",
+    "url": "https://bsd.sos.mo.gov/BusinessEntity/BESearch.aspx?SearchType=0",
+    "method": "browser", "searchParam": "txtEntityName",
+    "searchInput": "input[name='txtEntityName'], input[id*='txtEntity' i], input[type='text']",
+    "searchSubmit": "input[name='btnSearch'], button[type='submit']",
+    "accessible": true, "notes": "ASP.NET — 403 on POST; Puppeteer bypasses"
+  },
+  {
+    "state": "Montana", "code": "MT",
+    "url": "https://biz.sosmt.gov/search/business",
+    "method": "browser", "searchParam": "name",
+    "searchInput": "input[placeholder*='name' i], input[type='search'], input[type='text']",
+    "accessible": true, "notes": "React/Angular SPA — Puppeteer required"
+  },
+  {
+    "state": "Nebraska", "code": "NE",
+    "url": "https://www.nebraska.gov/sos/corp/corpsearch.cgi",
+    "method": "axios", "searchParam": "firstname",
+    "extraParams": { "nav": "search", "searched": "y" },
+    "accessible": true, "notes": "Old CGI GET script — plain HTML response"
+  },
+  {
+    "state": "Nevada", "code": "NV",
+    "url": "https://esos.nv.gov/EntitySearch/OnlineEntitySearch",
+    "method": "browser", "searchParam": "entityName",
+    "searchInput": "input[placeholder*='name' i], input[type='search'], input[type='text']",
+    "accessible": true, "notes": "SilverFlume SPA — Puppeteer required"
+  },
+  {
+    "state": "New Hampshire", "code": "NH",
+    "url": "https://quickstart.sos.nh.gov/online/BusinessInquire",
+    "method": "browser", "searchParam": "BusinessName",
+    "searchInput": "input[name='BusinessName'], input[placeholder*='name' i], input[type='text']",
+    "accessible": true, "notes": "Portal — 403 on axios; Puppeteer bypasses"
+  },
+  {
+    "state": "New Jersey", "code": "NJ",
+    "url": "https://www.njportal.com/DOR/BusinessNameSearch/Search/BusinessName",
+    "method": "axios", "searchParam": "sN",
+    "accessible": true, "notes": "Server-rendered GET"
+  },
+  {
+    "state": "New Mexico", "code": "NM",
+    "url": "https://enterprise.sos.nm.gov/search/business",
+    "method": "browser", "searchParam": "name",
+    "searchInput": "input[placeholder*='name' i], input[type='search'], input[type='text']",
+    "accessible": true, "notes": "Enterprise SPA — Puppeteer required"
+  },
+  {
+    "state": "New York", "code": "NY",
+    "url": "https://apps.dos.ny.gov/publicInquiry/EntitySearch",
+    "method": "browser", "searchParam": "entityName",
+    "searchInput": "input[name='entityName'], input[placeholder*='name' i], input[type='text']",
+    "accessible": true, "notes": "ECONNRESET on axios; Puppeteer bypasses"
+  },
+  {
+    "state": "North Carolina", "code": "NC",
+    "url": "https://www.sosnc.gov/online_services/search/by_title/_Business_Registration",
+    "method": "browser", "searchParam": "SearchTerms",
+    "searchInput": "input[name='SearchTerms'], input[placeholder*='name' i], input[type='text'], input[type='search']",
+    "accessible": true, "notes": "404 on direct GET; browser navigates correctly"
+  },
+  {
+    "state": "North Dakota", "code": "ND",
+    "url": "https://firststop.sos.nd.gov/search/business",
+    "method": "browser", "searchParam": "SearchValue",
+    "searchInput": "input[placeholder*='name' i], input[type='search'], input[type='text']",
+    "accessible": true, "notes": "React SPA — Puppeteer required"
+  },
+  {
+    "state": "Ohio", "code": "OH",
+    "url": "https://businesssearch.ohiosos.gov/",
+    "method": "browser", "searchParam": "searchValue",
+    "searchInput": "input[name='searchValue'], input[placeholder*='name' i], input[type='text'], input[type='search']",
+    "accessible": true, "notes": "403 on axios; Puppeteer bypasses"
+  },
+  {
+    "state": "Oklahoma", "code": "OK",
+    "url": "https://www.sos.ok.gov/corp/corpinquiryfind.aspx",
+    "method": "browser", "searchParam": "txtEntityName",
+    "searchInput": "input[name='txtEntityName'], input[id*='txtEntity' i], input[type='text']",
+    "accessible": true, "notes": "SSL cert error on axios; Puppeteer ignores SSL"
+  },
+  {
+    "state": "Oregon", "code": "OR",
+    "url": "https://sos.oregon.gov/business/Pages/find.aspx",
+    "method": "browser", "searchParam": "q",
+    "searchInput": "input[placeholder*='name' i], input[type='search'], input[type='text']",
+    "accessible": true, "notes": "Both known Socrata IDs return 404; using browser on SOS search page"
+  },
+  {
+    "state": "Pennsylvania", "code": "PA",
+    "url": "https://file.dos.pa.gov/search/business",
+    "method": "browser", "searchParam": "businessName",
+    "searchInput": "input[placeholder*='name' i], input[type='search'], input[type='text']",
+    "accessible": true, "notes": "React SPA — Puppeteer required"
+  },
+  {
+    "state": "Rhode Island", "code": "RI",
+    "url": "https://business.sos.ri.gov/corpweb/trademarksearch/trademarksearch.aspx",
+    "method": "browser",
+    "clickBefore": ["input#MainContent_rdoTrademark"],
+    "searchInput": "input#MainContent_txtSearch, input[name='ctl00$MainContent$txtSearch']",
+    "searchSubmit": "input[type='submit'], button[type='submit'], a[id*='btnSearch' i]",
+    "accessible": true, "notes": "Trademark-specific search; submit is a LinkButton (not <input type=submit>); radio must be clicked first to select trademark-name search mode"
+  },
+  {
+    "state": "South Carolina", "code": "SC",
+    "url": "https://businessfilings.sc.gov/BusinessFiling/Entity/Search",
+    "method": "browser", "searchParam": "entityName",
+    "searchInput": "input[placeholder*='name' i], input[type='search'], input[type='text']",
+    "accessible": true, "notes": "Angular SPA — Puppeteer required"
+  },
+  {
+    "state": "South Dakota", "code": "SD",
+    "url": "https://sosenterprise.sd.gov/BusinessServices/Business/FilingSearch.aspx",
+    "method": "aspnet", "searchParam": "txtBusName", "postButton": "btnSearch",
+    "accessible": true, "notes": "ASP.NET WebForms"
+  },
+  {
+    "state": "Tennessee", "code": "TN",
+    "url": "https://tncab.tnsos.gov/business-entity-search",
+    "method": "browser", "searchParam": "name",
+    "searchInput": "input[placeholder*='name' i], input[type='search'], input[type='text']",
+    "accessible": true, "notes": "React SPA — Puppeteer required"
+  },
+  {
+    "state": "Texas", "code": "TX",
+    "url": "https://data.texas.gov/resource/9cir-efmm.json",
+    "method": "api", "nameField": "taxpayer_name",
+    "accessible": true, "notes": "Socrata open data API — name-specific $where search"
+  },
+  {
+    "state": "Utah", "code": "UT",
+    "url": "https://businessregistration.utah.gov/EntitySearch/OnlineEntitySearch",
+    "method": "browser", "searchParam": "entityName",
+    "searchInput": "input[placeholder*='name' i], input[type='search'], input[type='text']",
+    "accessible": true, "notes": "SilverFlume-style SPA — Puppeteer required"
+  },
+  {
+    "state": "Vermont", "code": "VT",
+    "url": "https://bizfilings.vermont.gov/online/BusinessInquire",
+    "method": "axios", "searchParam": "BusinessName",
+    "accessible": true, "notes": "Server-rendered HTML"
+  },
+  {
+    "state": "Virginia", "code": "VA",
+    "url": "https://cis.scc.virginia.gov/EntitySearch/Index",
+    "method": "browser", "searchParam": "entityName",
+    "searchInput": "input[name='entityName'], input[placeholder*='name' i], input[type='text']",
+    "accessible": true, "notes": "Axios times out; Puppeteer waits correctly"
+  },
+  {
+    "state": "Washington", "code": "WA",
+    "url": "", "method": "none", "searchParam": null,
+    "accessible": false, "notes": "esos.wa.gov API is DNS-dead; ccfs.sos.wa.gov Angular SPA blocks automation — deferred"
+  },
+  {
+    "state": "West Virginia", "code": "WV",
+    "url": "https://apps.wv.gov/SOS/BusinessEntitySearch/",
+    "method": "axios", "searchParam": "EntityName",
+    "accessible": true, "notes": "Classic HTML form"
+  },
+  {
+    "state": "Wisconsin", "code": "WI",
+    "url": "https://apps.dfi.wi.gov/apps/corpsearch/search.aspx",
+    "method": "browser", "searchParam": "SearchEntity",
+    "searchInput": "input[name='SearchEntity'], input[id*='Search' i], input[type='text']",
+    "searchSubmit": "input[name='btnSearch'], input[value*='Search' i], button[type='submit']",
+    "accessible": true, "notes": "ASP.NET — axes times out; Puppeteer fills form correctly"
+  },
+  {
+    "state": "Wyoming", "code": "WY",
+    "url": "", "method": "none", "searchParam": null,
+    "accessible": false, "notes": "Restricts API access; session-heavy forms requiring human interaction — permanently blocked"
+  }
+]
