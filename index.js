@@ -27,24 +27,24 @@ app.get("/api/test-euipo", async (req, res) => {
   res.json({ message: "EUIPO scan complete. Check trademark_matches in Supabase." });
 });
 
-const { runUSPTOScraper } = require("./scrapers/usptoScraper");
-app.get("/api/test-uspto", async (req, res) => {
-  const total = await runUSPTOScraper();
-  res.json({ message: `USPTO scan complete. ${total} new match(es) found.` });
-});
-
-const { runIPAustraliaScraper } = require("./scrapers/ipAustraliaScraper");
-app.get("/api/test-ipau", async (req, res) => {
-  const total = await runIPAustraliaScraper();
-  res.json({ message: `IP Australia scan complete. ${total} new match(es) found.` });
-});
-
-const { runIPONZScraper } = require("./scrapers/iponzScraper");
-app.get("/api/test-iponz", async (req, res) => {
-  const total = await runIPONZScraper();
-  res.json({ message: `IPONZ scan complete. ${total} new match(es) found.` });
-});
+// USPTO scraper -- disabled until Hassan fixes the puppeteer ESM issue
+// const { runUSPTOScraper } = require("./scrapers/usptoScraper");
+// app.get("/api/test-uspto", async (req, res) => {
+//   const total = await runUSPTOScraper();
+//   res.json({ message: `USPTO scan complete. ${total} new match(es) found.` });
+// });
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
+});
+const { runUKIPOScraper } = require("./scrapers/ukipoScraper");
+app.get("/api/test-ukipo", async (req, res) => {
+  const total = await runUKIPOScraper();
+  res.json({ message: `UKIPO scan complete. ${total} new match(es) found.` });
+});
+
+const { runCIPOScraper } = require("./scrapers/cipoScraper");
+app.get("/api/test-cipo", async (req, res) => {
+  const total = await runCIPOScraper();
+  res.json({ message: `CIPO scan complete. ${total} new match(es) found.` });
 });
