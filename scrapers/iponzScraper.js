@@ -1,4 +1,3 @@
-const puppeteer = require('puppeteer');
 const levenshtein = require('fast-levenshtein');
 const supabase = require('../lib/supabase');
 
@@ -229,6 +228,7 @@ async function runIPONZScraper() {
 
     console.log(`[IPONZ] Scanning ${keywords.length} keyword(s)...`);
 
+    const { default: puppeteer } = await import('puppeteer');
     const browser = await puppeteer.launch({
       headless: true,
       args: ['--no-sandbox', '--disable-setuid-sandbox']

@@ -1,4 +1,3 @@
-const puppeteer = require('puppeteer');
 const levenshtein = require('fast-levenshtein');
 const supabase = require('../lib/supabase');
 
@@ -144,6 +143,7 @@ async function runIPAustraliaScraper() {
 
     console.log(`[IP-AU] Scanning ${keywords.length} keyword(s)...`);
 
+    const { default: puppeteer } = await import('puppeteer');
     const browser = await puppeteer.launch({
       headless: true,
       args: ['--no-sandbox', '--disable-setuid-sandbox']
