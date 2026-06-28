@@ -34,6 +34,18 @@ app.get("/api/test-uspto", async (req, res) => {
   res.json({ message: `USPTO scan complete. ${total} new match(es) found.` });
 });
 
+const { runIPAustraliaScraper } = require("./scrapers/ipAustraliaScraper");
+app.get("/api/test-ipau", async (req, res) => {
+  const total = await runIPAustraliaScraper();
+  res.json({ message: `IP Australia scan complete. ${total} new match(es) found.` });
+});
+
+const { runIPONZScraper } = require("./scrapers/iponzScraper");
+app.get("/api/test-iponz", async (req, res) => {
+  const total = await runIPONZScraper();
+  res.json({ message: `IPONZ scan complete. ${total} new match(es) found.` });
+});
+
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
