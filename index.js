@@ -11,6 +11,16 @@ app.use(cors({
 }));
 app.use(express.json());
 
+// Root
+app.get('/', (req, res) => {
+  res.json({
+    name: 'Trademark Monitor API',
+    status: 'ok',
+    version: '1.0.0',
+    endpoints: ['/health', '/api/keywords', '/api/matches'],
+  });
+});
+
 // Health check
 app.get('/health', (req, res) => {
   res.status(200).json({ status: 'ok', timestamp: new Date().toISOString() });
